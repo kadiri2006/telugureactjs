@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   let p = <p>this is paragraph tag link to p variable </p>;
+  let instyle = <p>observe inline styles in react</p>;
   let color = (
     <p style={{ color: "black", fontSize: "30px" }}>
       this paragraph tag is linked to color variable and used in line css
@@ -16,7 +17,7 @@ function App() {
     React.createElement(
       "p",
       {
-        style:{color:"red",fontSize:"100px"},
+        style: { color: "red", fontSize: "100px" },
       },
       "with two children"
     )
@@ -28,7 +29,8 @@ function App() {
         <h1>hi iam in h1 element</h1>
         {p}
         {color}
-       {babelsyntax}
+        {babelsyntax}
+        {instyle}
       </header>
     </div>
   );
