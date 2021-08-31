@@ -1,9 +1,16 @@
 
+import { useState } from "react";
 import "./index.css";
+
+import Music from "./Muisc";
+
 
 
 
 export default function Movie() {
+  
+  
+  
   return (
     <div className=" grid grid-cols-3  grid-flow-row">
       <div>
@@ -66,8 +73,7 @@ export default function Movie() {
           src={require("./assets/images/1.svg").default}
         />
       </div>
-
-     
+      
     </div>
   );
 }

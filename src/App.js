@@ -15,7 +15,7 @@ export default function App() {
       </div>
 
       <Gallery />
-      <Music />
+     
     </div>
   );
 }
