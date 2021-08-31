@@ -1,49 +1,21 @@
-import "./App.css";
-import logo from "./img/1.svg";
+import Movie from "./Movie";
+import Gallery from "./Gallery";
+import Music from "./Muisc";
+import Heading, { Heading2 } from "./Heading";
+import "./index.css";
 
-export default function weather() {
-  let data = [
-    {
-      day: "Monday",
-      date: "April 5th 1:00pm",
-      imga: logo,
-      temp: "35",
-      visibility: "clear sky",
-    },
-    {
-      day: "Tuesday",
-      date: "April 6th 10:00pm",
-      imga: logo,
-      temp: "20",
-      visibility: "cloudy",
-    },
-    {
-      day: "Wensday",
-      date: "April 7th 11:00pm",
-      imga: logo,
-      temp: "23",
-      visibility: "rainy",
-    },
-  ];
-
+export default function App() {
   return (
-    <div className="body">
-      <h1> 3-day forecast</h1>
-      <p>Tirupathi Andhra pradesh,india </p>
+    <div>
+      <div className=" bg-yellow-100">
+        <Heading name={"MUSIC GALLERY"} />
+      </div>
+      <div className=" bg-blue-400">
+        <Heading2 name={"MUSIC GALLERY"} />
+      </div>
 
-      {data.length > 1 ? (
-        data.map((value,index) => (
-          <div className="block" key={value.day}>
-            <p>{value.day}</p>
-            <p>{value.date}</p>
-            <p>{value.temp}</p>
-            <p>{value.visibility}</p>
-            <img src={value.imga} alt="cloud logo" />
-          </div>
-        ))
-      ) : (
-        <p>condition does't meet the requie ments</p>
-      )}
+      <Gallery />
+      <Music />
     </div>
   );
 }
