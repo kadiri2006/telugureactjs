@@ -3,6 +3,7 @@ import Music from "./Muisc";
 import Heading, { Heading2 } from "./Heading";
 import "./index.css";
 import { useState } from "react";
+import Test from "./Test";
 
 export default function App() {
   let [state, setState] = useState("");
@@ -16,6 +17,7 @@ export default function App() {
       </div>
       <Gallery setState={setState} />
       <Music pop={state} />
+      <Test/>
     </div>
   );
 }
