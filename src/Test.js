@@ -11,7 +11,8 @@ export default function Test() {
   return (
     <div>
       <button
-        onClick={(e) => getEvent(e)}
+      type="button"
+      onClick={(e) => getEvent(e)}
         className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
       >
         Button
