@@ -4,7 +4,7 @@ import "react-h5-audio-player/lib/styles.css";
 export default function Music(props) {
   return (
     <div>
-      <H5AudioPlayer src={props.pop} onPlay={(e) => console.log("clicked")} />
+      <H5AudioPlayer autoPlay src={props.path} onPlay={(e) => console.log("clicked")} />
     </div>
   );
 }

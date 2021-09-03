@@ -1,23 +1,31 @@
 import Gallery from "./Gallery";
-import Music from "./Muisc";
-import Heading, { Heading2 } from "./Heading";
 import "./index.css";
-import { useState } from "react";
-import Test from "./Test";
+import { useState, useEffect } from "react";
+import Singup from "./Singup";
+import Signin from "./Signin";
 
 export default function App() {
-  let [state, setState] = useState("");
+  const [sign, setsign] = useState(true);
+  const [sign2, setsign2] = useState(false);
+  const [gallery, setgallery] = useState(false);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("login")).value === true) {
+      setsign(false);
+      setsign2(false);
+      setgallery(true);
+    }
+  });
+
   return (
-    <div>
-      <div className=" bg-yellow-100">
-        <Heading name={"MUSIC GALLERY"} />
-      </div>
-      <div className=" bg-blue-400">
-        <Heading2 name={"MUSIC GALLERY"} />
-      </div>
-      <Gallery setState={setState} />
-      <Music pop={state} />
-      <Test/>
+    <div className="flex mx-96">
+      {!JSON.parse(localStorage.getItem("login")).value && sign && (
+        <Singup sign={setsign} sign2={setsign2} gallery={setgallery} />
+      )}
+      {sign2 && <Signin sign={setsign} sign2={setsign2} gallery={setgallery} />}
+      {gallery && (
+        <Gallery sign={setsign} sign2={setsign2} gallery={setgallery} />
+      )}
     </div>
   );
 }
