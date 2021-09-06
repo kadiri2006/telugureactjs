@@ -1,49 +1,71 @@
-import "./App.css";
-import logo from "./img/1.svg";
+import React from "react";
+import Header from "./Header";
+import Component1 from "./Component1";
+import Component2 from "./Component2";
+import Component3 from "./Component3";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 
-export default function weather() {
-  let data = [
-    {
-      day: "Monday",
-      date: "April 5th 1:00pm",
-      imga: logo,
-      temp: "35",
-      visibility: "clear sky",
-    },
-    {
-      day: "Tuesday",
-      date: "April 6th 10:00pm",
-      imga: logo,
-      temp: "20",
-      visibility: "cloudy",
-    },
-    {
-      day: "Wensday",
-      date: "April 7th 11:00pm",
-      imga: logo,
-      temp: "23",
-      visibility: "rainy",
-    },
-  ];
+import { Route, Switch } from "react-router-dom";
 
+export default function App() {
+  let myName = new URLSearchParams(useLocation().search).get("name");
+  let myName2 = new URLSearchParams(useLocation().search).get("name2");
+  console.log(new URLSearchParams(useLocation().search).get("name"));
+  
   return (
-    <div className="body">
-      <h1> 3-day forecast</h1>
-      <p>Tirupathi Andhra pradesh,india </p>
+    <div>
+      <Header />
+      <Switch>
+        <Route exact strict path="/">
+          <h1>this is home page</h1>
+        </Route>
+        <Route exact strict path="/1">
+          <Component1 />
+        </Route>
 
-      {data.length > 1 ? (
-        data.map((value,index) => (
-          <div className="block" key={value.day}>
-            <p>{value.day}</p>
-            <p>{value.date}</p>
-            <p>{value.temp}</p>
-            <p>{value.visibility}</p>
-            <img src={value.imga} alt="cloud logo" />
-          </div>
-        ))
-      ) : (
-        <p>condition does't meet the requie ments</p>
-      )}
+        <Route exact strict path="/2">
+          <Component2 />
+        </Route>
+        <Route path="/changed" render={() => <Querry myName={myName} myName2={myName2} />} />
+        <Route exact strict path="/3">
+          <Component3 />
+        </Route>
+
+        <Route exact strict path="/url/:one/:two">
+             <Url/>
+        </Route>
+
+        <Redirect exact strict from="/5" to="/changed" />
+
+        <Route exact strict path="*">
+          <h1>this is 404 error</h1>
+        </Route>
+      </Switch>
     </div>
   );
+}
+function Querry({ myName,myName2 }) {
+
+
+  return (
+    <div>
+      <h1>first querry {myName}</h1>
+      <h1>second querry {myName2}</h1>
+    </div>
+  );
+}
+
+
+
+
+
+function Url(){
+console.log(useParams());
+  const {one,two}=useParams()
+  return <h1>this url param displayed here value are {one }and {two}</h1>
 }
