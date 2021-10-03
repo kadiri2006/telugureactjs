@@ -1,49 +1,34 @@
-import "./App.css";
-import logo from "./img/1.svg";
+import React, { useRef } from "react";
 
-export default function weather() {
-  let data = [
-    {
-      day: "Monday",
-      date: "April 5th 1:00pm",
-      imga: logo,
-      temp: "35",
-      visibility: "clear sky",
-    },
-    {
-      day: "Tuesday",
-      date: "April 6th 10:00pm",
-      imga: logo,
-      temp: "20",
-      visibility: "cloudy",
-    },
-    {
-      day: "Wensday",
-      date: "April 7th 11:00pm",
-      imga: logo,
-      temp: "23",
-      visibility: "rainy",
-    },
-  ];
+export default function App() {
+  const ref = useRef();
+
+  function submit(e) {
+    e.preventDefault();
+    const data = new FormData(ref.current);
+    for (const datas of data) {
+      console.log(datas[0], datas[1]);
+    }
+    ref.current.reset();
+  }
 
   return (
-    <div className="body">
-      <h1> 3-day forecast</h1>
-      <p>Tirupathi Andhra pradesh,india </p>
-
-      {data.length > 1 ? (
-        data.map((value,index) => (
-          <div className="block" key={value.day}>
-            <p>{value.day}</p>
-            <p>{value.date}</p>
-            <p>{value.temp}</p>
-            <p>{value.visibility}</p>
-            <img src={value.imga} alt="cloud logo" />
-          </div>
-        ))
-      ) : (
-        <p>condition does't meet the requie ments</p>
-      )}
+    <div>
+      <form ref={ref} onSubmit={submit}>
+        <label htmlFor="name">
+          NAME:
+          <input type="text" name="name" defaultValue="" id="name" />
+        </label>
+        <label htmlFor="school">
+          SCHOOL:
+          <input type="text" name="school" defaultValue="" id="school" />
+        </label>
+        <label htmlFor="rank">
+          RANK:
+          <input type="number" name="rank" defaultValue="" id="rank" />
+        </label>
+        <button type="submit">submit</button>
+      </form>
     </div>
   );
 }
