@@ -7,16 +7,18 @@ import {
   BrowserRouter as Router,
   Redirect,
   useLocation,
-  useParams,
+  useParams
 } from "react-router-dom";
 
 import { Route, Switch } from "react-router-dom";
 
 export default function App() {
-  let myName = new URLSearchParams(useLocation().search).get("name");
+  let myName = new URLSearchParams(useLocation().search).get(
+    "name"
+  ); /* ?name=kadiribharath&name2=ragu */
   let myName2 = new URLSearchParams(useLocation().search).get("name2");
   console.log(new URLSearchParams(useLocation().search).get("name"));
-  
+
   return (
     <div>
       <Header />
@@ -31,13 +33,16 @@ export default function App() {
         <Route exact strict path="/2">
           <Component2 />
         </Route>
-        <Route path="/changed" render={() => <Querry myName={myName} myName2={myName2} />} />
+        <Route
+          path="/changed"
+          render={() => <Querry myName={myName} myName2={myName2} />}
+        />
         <Route exact strict path="/3">
           <Component3 />
         </Route>
 
         <Route exact strict path="/url/:one/:two">
-             <Url/>
+          <Url />
         </Route>
 
         <Redirect exact strict from="/5" to="/changed" />
@@ -49,9 +54,7 @@ export default function App() {
     </div>
   );
 }
-function Querry({ myName,myName2 }) {
-
-
+function Querry({ myName, myName2 }) {
   return (
     <div>
       <h1>first querry {myName}</h1>
@@ -60,12 +63,12 @@ function Querry({ myName,myName2 }) {
   );
 }
 
-
-
-
-
-function Url(){
-console.log(useParams());
-  const {one,two}=useParams()
-  return <h1>this url param displayed here value are {one }and {two}</h1>
+function Url() {
+  console.log(useParams());
+  const { one, two } = useParams();
+  return (
+    <h1>
+      this url param displayed here value are {one}and {two}
+    </h1>
+  );
 }
